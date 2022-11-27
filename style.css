@@ -1,0 +1,22 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background-color: antiquewhite;
+}
+
+.main {
+    width: 100%;
+    height: 100vh;
+    background: url(images/deepmind.jpg) center no-repeat;
+}
+
+.container1 {
+    margin: 15vh 15vw;
+    opacity: 70%;
+    backdrop-filter: blur(1);
+}

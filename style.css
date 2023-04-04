@@ -1,69 +1,111 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  background: rgb(238, 255, 210);
 }
 
-body {
-    min-height: 100vh;
-    background-color: white;
+.header{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 30px;
+  background-color: rgb(77, 77, 77);
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  margin-bottom: 1rem;
 }
-
-.main {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: url(images/deepmind-E301rX-2CeQ-unsplash.jpg)center no-repeat;
-    background-size: cover;
+.main{
+  padding: 1rem;
+  margin-top: 30px;
 }
-
-.container1 {
-    font-weight: 100;
-    font-family: 'Roboto Flex', sans-serif;
-    line-height: 2rem;
-    padding: 20vh 10vw;
-    background-color: rgba(255, 255, 255, 0.237);
-    backdrop-filter: blur(4px);
-    text-align: center;
+.intro{
+  text-align: right;
+  color: rgb(99, 99, 99);
 }
-
-.textbox h1 {
-    margin: 1rem 0;
-    font-size: 4rem;
-    line-height: 4rem;
-    text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.445);
+.intro h1{
+  font-size: 4rem;
+  font-weight: 100;
+  letter-spacing: -1px;
+  word-spacing: 0;
+  background: linear-gradient(to right, rgb(0, 102, 255),rgb(128, 0, 94));
+  background-clip: text;
+  -webkit-background-clip: text;
+  text-fill-color: transparent;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: -.5rem;
 }
-
-.textbox h2 {
-    font-size: 16px;
-    font-weight: 100;
-    text-shadow: 0 1px 5px 5px black;
-    text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.445);
+.intro p{
+  font-size: .8rem;
+  font-weight: 100;
+  line-height: .9rem;
 }
-
-.textbox h3 {
-    font-weight: 100;
-    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.516);
+.project-container{
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-
-.game1 {
-    border-radius: 20px;
-    background-color: rgb(28, 149, 255);
-    color: white;
-    width: 300px;
-    text-shadow: 1px 1px 10px black;
-    box-shadow: 0px 0px 3px 2px rgb(41, 148, 255);
+.project-heading{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
-.projects a{
-    margin-top: 2rem;
-    color: white;
-    text-decoration: none;
+.project-heading h1{
+  text-align: center;
+  width: 100px;
 }
 .projects{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  max-width: 600px;
 }
+.project{
+  width: 250px;
+  background-color: rgb(255, 254, 187);
+  border-radius: 10px;
+  border: 1px solid rgb(238, 253, 183);
+  margin-top: 2rem;
+  box-shadow: 3px 3px 10px 5px rgba(219, 233, 184, 0.596);
+}
+.project .img{
+  width: 250px;
+}
+.project a{
+  text-decoration: none;
+  color: black;
+}
+
+.content{
+  border-top: 1px solid gray;
+  padding: .8rem;
+}
+.content h2{
+  margin-bottom: 2px;
+}
+.content p{
+  font-size: .8rem;
+  color: rgb(138, 23, 151);
+}
+
+
+
+/* #main{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  min-height: 100px;
+}
+.water{
+  position: absolute;
+  border-radius: 50% 50% 0 0;
+  background-color: rgb(39, 200, 244);
+}
+ */

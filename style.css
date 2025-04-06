@@ -97,10 +97,6 @@ body {
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-#sidebar.collapsed #sidebarToggle i.fa-chevron-right {
-    transform: rotate(180deg);
-}
-
 /* Sidebar items centering transition */
 .sidebar-item {
     transition: margin 0.3s ease-out;

@@ -40,42 +40,23 @@ document.addEventListener('DOMContentLoaded', () => {
     sidebarToggle.addEventListener('click', () => {
         sidebar.classList.toggle('collapsed');
         const icon = sidebarToggle.querySelector('i');
-        const sidebarTexts = document.querySelectorAll('.sidebar-text');
-        const sidebarItems = document.querySelectorAll('.sidebar-item');
-
         sidebar.style.transition = 'width 0.3s ease-in-out';
         sidebarToggle.style.transition = 'right 0.3s ease-in-out';
         
         if (sidebar.classList.contains('collapsed')) {
             sidebar.style.width = '4rem';
             icon.classList.remove('fa-chevron-left');
-            icon.classList.add('fa-chevron-right');
+            icon.classList.add('fa-right-to-bracket');
             sidebarToggle.classList.remove('-right-3');
-            sidebarToggle.classList.add('right-6');
-            sidebarItems.forEach(el => {
-                el.style.transition = 'margin 0.3s ease-in-out';
-                el.classList.add('mx-auto');
-            });
-            sidebarTexts.forEach(el => {
-                el.style.transition = 'opacity 0.3s ease-in-out 0.3s';
-                el.classList.add('opacity-0', 'invisible');
-            });
+            sidebarToggle.classList.add('right-5');
             sidebarProfile.style.transition = 'opacity 0.2s ease-in-out';
             sidebarProfile.classList.remove('flex');
             sidebarProfile.classList.add('hidden');
         } else {
-            icon.classList.remove('fa-chevron-right');
+            icon.classList.remove('fa-right-to-bracket');
             icon.classList.add('fa-chevron-left');
             sidebarToggle.classList.remove('right-6');
             sidebarToggle.classList.add('-right-3');
-            sidebarTexts.forEach(el => {
-                el.style.transition = 'opacity 0.3s ease-in-out 0.1s';
-                el.classList.remove('opacity-0', 'invisible');
-            });
-            sidebarItems.forEach(el => {
-                el.style.transition = 'margin 0.3s ease-in-out';
-                el.classList.remove('mx-auto');
-            });
             setTimeout(() => {
                 sidebarProfile.style.transition = 'opacity 0.3s ease-in-out';
                 sidebarProfile.classList.remove('hidden');

@@ -1,5 +1,17 @@
 /* Add Tailwind's Typography plugin via CDN or npm for best results */
 /* Basic dark prose styles if NOT using the plugin */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&family=Source+Serif+Pro:ital,wght@0,400;1,600&display=swap');
+
+body {
+    background-color: #111827; /* bg-gray-900 */
+    color: #d1d5db; /* text-gray-300 */
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em;
+    line-height: 1.6em;
+    margin: 0;
+    padding: 0;
+}
+
 .prose-invert {
     color: #d1d5db; /* text-gray-300 */
 }

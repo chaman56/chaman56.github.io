@@ -32,6 +32,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let projectsLoaded = false;
     let experiencesLoaded = false;
 
+    const blogFiles = [
+        'my-first-blog.md',
+    ];
+
     // --- Sidebar Toggle ---
     sidebarToggle.addEventListener('click', () => {
         sidebar.classList.toggle('collapsed');
@@ -558,10 +562,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // --- Blog Loading (Assuming marked.js is included in HTML for this) ---
-    const blogFiles = [
-        'my-first-blog.md',
-        'another-cool-post.md',
-    ];
 
     async function loadBlogs() {
         blogList.innerHTML = ''; // Clear loading/previous

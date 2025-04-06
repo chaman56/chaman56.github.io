@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let projectsLoaded = false;
     let experiencesLoaded = false;
+    let blogsLoading = false;
 
     const blogFiles = [
         'my-first-blog.md',
@@ -86,7 +87,9 @@ document.addEventListener('DOMContentLoaded', () => {
         
         mainContent.scrollTop = 0; // Scroll to top of content area
 
-        window.location.href = `#${sectionId}`; // Update URL without reloading
+        if (!window.location.hash.includes(sectionId)) {
+            history.pushState(null, null, `#${sectionId}`);
+        }
 
         // Load content synchronously if not already loaded
         if (sectionId === 'projects' && !projectsLoaded) {
@@ -545,6 +548,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Blog Loading (Assuming marked.js is included in HTML for this) ---
 
     async function loadBlogs() {
+        blogsLoading = true;
         blogList.innerHTML = ''; // Clear loading/previous
         if (!blogFiles || blogFiles.length === 0) {
             blogList.innerHTML = '<p class="text-gray-500 text-center">No blog posts listed yet.</p>';
@@ -588,6 +592,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if(blogsDisplayed === 0 && blogFiles.length > 0) {
              blogList.innerHTML = '<p class="text-gray-500 text-center">Could not load any blog posts. Check console/network.</p>';
         }
+        blogsLoading = false;
     }
 
     // --- Display Blog Content ---

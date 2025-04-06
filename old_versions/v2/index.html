@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chaman Yadav - Portfolio</title>
+    <style>
+        /* Base styles */
+        :root {
+            --blue-500: #3b82f6;
+            --blue-600: #2563eb;
+            --violet-500: #8b5cf6;
+            --violet-600: #7c3aed;
+            --background: #121212;
+            --text-color: #f3f4f6;
+            --muted-foreground: #9ca3af;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--background);
+            color: var(--text-color);
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .min-h-screen {
+            min-height: 100vh;
+        }
+
+        .bg-gradient-to-br {
+            background: linear-gradient(to bottom right, var(--background), var(--background), rgba(18, 18, 18, 0.95));
+        }
+
+        .relative {
+            position: relative;
+        }
+
+        /* Blur effect */
+        .blur-effect {
+            position: fixed;
+            inset: 0;
+            z-index: 30;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            background: radial-gradient(600px at 0px 0px, rgba(29, 78, 216, 0.15), transparent 80%);
+        }
+
+        /* Mobile menu button */
+        .mobile-menu-btn {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+                position: fixed;
+                top: 1rem;
+                right: 1rem;
+                z-index: 50;
+                padding: 0.5rem;
+                background: rgba(18, 18, 18, 0.8);
+                backdrop-filter: blur(4px);
+                border-radius: 0.5rem;
+                border: none;
+                color: var(--text-color);
+                cursor: pointer;
+            }
+        }
+
+        /* Main layout */
+        .flex-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        @media (min-width: 768px) {
+            .flex-container {
+                flex-direction: row;
+            }
+        }
+
+        /* Left Sidebar */
+        .sidebar {
+            width: 100%;
+            padding: 2rem;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(16px);
+            background-color: rgba(18, 18, 18, 0.8);
+            z-index: 40;
+        }
+
+        @media (min-width: 768px) {
+            .sidebar {
+                width: 45%;
+                max-width: 550px;
+                height: 100vh;
+                overflow-y: auto;
+            }
+        }
+
+        /* Background effects */
+        .background-effects {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -10;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            filter: blur(16px);
+            opacity: 0.6;
+        }
+
+        .back1, .back2, .back3, .back4, .back5 {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .lights {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--blue-500), transparent 70%);
+        }
+
+        /* Profile Section */
+        .space-y-4 {
+            margin-top: 1rem;
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            font-weight: 800;
+        }
+
+        h2 {
+            font-size: 1.875rem;
+            font-weight: 800;
+        }
+
+        .underline {
+            text-decoration: underline;
+            text-decoration-style: wavy;
+        }
+
+        p {
+            color: var(--muted-foreground);
+            margin-top: 0.5rem;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Skills */
+        .skills-title {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, var(--blue-500), var(--violet-500));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            display: inline-block;
+            margin: 0.15rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            background-color: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+
+        .badge:hover {
+            background-color: rgba(59, 130, 246, 0.2);
+        }
+
+        /* Contact & Social Links */
+        .contact-section {
+            margin-top: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .social-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 0.375rem;
+            background-color: rgba(18, 18, 18, 0.6);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(4px);
+            transition: all 0.3s;
+        }
+
+        .social-button:hover {
+            background-color: rgba(59, 130, 246, 0.1);
+        }
+
+        .social-button svg {
+            width: 20px;
+            height: 20px;
+            color: var(--text-color);
+        }
+
+        .email-tooltip {
+            position: absolute;
+            top: -32px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .social-button:hover .email-tooltip {
+            opacity: 1;
+        }
+
+        /* Right Content Area */
+        .main-content {
+            width: 100%;
+            padding: 1rem;
+            flex: 1;
+            z-index: 10;
+        }
+
+        @media (min-width: 768px) {
+            .main-content {
+                height: 100vh;
+                padding: 2rem;
+                overflow-y: scroll;
+            }
+        }
+
+        .content-container {
+            max-width: 64rem;
+            padding-top: 4rem;
+        }
+
+        @media (min-width: 768px) {
+            .content-container {
+                padding-top: 0;
+            }
+        }
+
+        /* Section Titles */
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--blue-600), var(--violet-600));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background-color: transparent;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            background-color: rgba(59, 130, 246, 0.05);
+            transform: translateX(0.5rem);
+        }
+
+        .project-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .project-content {
+                flex-direction: row;
+                min-width: 500px;
+            }
+        }
+
+        .project-image-container {
+            width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .project-image-container {
+                width: 33.333%;
+                min-width: 180px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .project-image-container {
+                width: 25%;
+            }
+        }
+
+        .project-image {
+            width: 100%;
+            border-radius: 0.75rem;
+            aspect-ratio: 4 / 3;
+        }
+
+        .project-details {
+            flex: 1;
+            padding: 0.5rem;
+            padding-top: 0;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-title-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.25rem;
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            background: linear-gradient(to right, var(--blue-500), var(--violet-500));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .project-link {
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .project-card:hover .project-link {
+            opacity: 1;
+        }
+
+        .project-description {
+            color: var(--muted-foreground);
+            margin-bottom: 1rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .project-tag {
+            background-color: rgba(18, 18, 18, 0.5);
+            backdrop-filter: blur(4px);
+            transition: all 0.3s;
+        }
+
+        .project-card:hover .project-tag {
+            background-color: rgba(59, 130, 246, 0.1);
+        }
+
+        /* Achievements */
+        .achievements-grid {
+            display: grid;
+            gap: 0.25rem;
+        }
+
+        .achievement-item {
+            background-color: rgba(18, 18, 18, 0.5);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            padding: 1rem;
+            transition: all 0.3s;
+        }
+
+        .achievement-item:hover {
+            background-color: rgba(59, 130, 246, 0.05);
+        }
+
+        .achievement-text {
+            transition: transform 0.3s;
+        }
+
+        .achievement-item:hover .achievement-text {
+            transform: translateX(0.5rem);
+        }
+
+        /* For icons & SVGs */
+        .icon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            color: var(--blue-500);
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen bg-gradient-to-br relative">
+        <!-- Animated background blur -->
+        <div class="blur-effect" id="blur-effect"></div>
+
+        <!-- Mobile menu button -->
+        <button class="mobile-menu-btn" id="mobile-menu-toggle">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                <line x1="4" x2="20" y1="12" y2="12"></line>
+                <line x1="4" x2="20" y1="6" y2="6"></line>
+                <line x1="4" x2="20" y1="18" y2="18"></line>
+            </svg>
+        </button>
+
+        <div class="flex-container">
+            <!-- Left Sidebar -->
+            <div class="sidebar">
+                <div class="background-effects">
+                    <div class="back1">
+                        <div class="lights" style="top: -200px;"></div>
+                        <div class="lights" style="left: 300px;"></div>
+                        <div class="lights" style="top: -300px; left: -300px;"></div>
+                        <div class="back5">
+                            <div class="lights" style="left: 300px; top: -100px;"></div>
+                            <div class="lights" style="left: -200px; top: 300px;"></div>
+                            <div class="lights" style="top: -300px; left: -300px;"></div>
+                            <div class="lights" style="top: 200px; left: 100px;"></div>
+                        </div>
+                        <div class="back2">
+                            <div class="lights" style="top: -200px;"></div>
+                            <div class="lights" style="left: -300px;"></div>
+                            <div class="lights" style="top: 200px; left: -300px;"></div>
+                            <div class="lights" style="top: 200px; left: -100px;"></div>
+                            <div class="back3">
+                                <div class="lights" style="left: 300px; top: -100px;"></div>
+                                <div class="lights" style="left: -200px; top: 300px;"></div>
+                                <div class="lights" style="top: -300px; left: -300px;"></div>
+                                <div class="lights" style="top: 200px; left: 100px;"></div>
+                            </div>
+                            <div class="back4">
+                                <div class="lights" style="left: 300px; top: -100px;"></div>
+                                <div class="lights" style="left: -200px; top: 300px;"></div>
+                                <div class="lights" style="top: -300px; left: -300px;"></div>
+                                <div class="lights" style="top: 200px; left: 100px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <!-- Profile Section -->
+                    <div class="space-y-4">
+                        <div>
+                            <h1>Hi!</h1>
+                            <h2>I'm <span class="underline">Chaman Yadav</span></h2>
+                            <p>
+                                I am a Computer Science and Engineering student at IIIT Pune (8.47 CGPA). Passionate about 
+                                web development, AI, and machine learning, I have a proven track record in building robust 
+                                applications and participating in competitive programming.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Skills -->
+                    <div class="space-y-4">
+                        <div class="skills-title">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                            <h3 class="gradient-text">Skills</h3>
+                        </div>
+                        <div class="skills-container">
+                            <span class="badge">NextJS</span>
+                            <span class="badge">React</span>
+                            <span class="badge">Node.js</span>
+                            <span class="badge">Express.js</span>
+                            <span class="badge">MongoDB</span>
+                            <span class="badge">REST APIs</span>
+                            <span class="badge">SQL</span>
+                            <span class="badge">Postgre</span>
+                            <span class="badge">Supabase</span>
+                            <span class="badge">Prisma</span>
+                            <span class="badge">FastAPI</span>
+                            <span class="badge">Flask</span>
+                            <span class="badge">Generative AI</span>
+                            <span class="badge">RAG</span>
+                            <span class="badge">Machine Learning</span>
+                            <span class="badge">NLP</span>
+                            <span class="badge">C/C++</span>
+                            <span class="badge">Python</span>
+                            <span class="badge">Java</span>
+                            <span class="badge">JavaScript</span>
+                            <span class="badge">TypeScript</span>
+                            <span class="badge">Git</span>
+                            <span class="badge">VScode</span>
+                            <span class="badge">Github</span>
+                            <span class="badge">Postman</span>
+                            <span class="badge">Docker</span>
+                        </div>
+                    </div>
+
+                    <!-- Contact & Social Links -->
+                    <div class="contact-section">
+                        <p style="font-weight: 600;">Connect with me</p>
+                        <div class="social-links">
+                            <a href="https://github.com/chaman56" target="_blank" rel="noopener noreferrer" class="social-button">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
+                                    <path d="M9 18c-4.51 2-5-2-7-2"></path>
+                                </svg>
+                                <span class="sr-only">GitHub</span>
+                            </a>
+                            <a href="https://linkedin.com/in/chaman56" target="_blank" rel="noopener noreferrer" class="social-button">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                                    <rect width="4" height="12" x="2" y="9"></rect>
+                                    <circle cx="4" cy="4" r="2"></circle>
+                                </svg>
+                                <span class="sr-only">LinkedIn</span>
+                            </a>
+                            <button class="social-button" id="copy-email" title="Click to copy email">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                    <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                                </svg>
+                                <span class="sr-only">Email</span>
+                                <span class="email-tooltip">Click to copy email</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Content Area -->
+            <main class="main-content">
+                <div class="content-container">
+                    <!-- Projects Section -->
+                    <section class="section">
+                        <div class="section-header">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                <rect width="20" height="14" x="2" y="7" rx="2" ry="2"></rect>
+                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                            </svg>
+                            <h2 class="section-title">Projects</h2>
+                        </div>
+                        <div class="projects-grid">
+                            <!-- Project 1 -->
+                            <div class="project-card">
+                                <div class="project-content">
+                                    <div class="project-image-container">
+                                        <img src="/images/crudcy.png?height=200&width=200" alt="Crudcy" class="project-image">
+                                    </div>
+                                    <div class="project-details">
+                                        <div class="project-title-container">
+                                            <span class="project-title">Crudcy</span>
+                                            <a href="https://github.com/chaman56/Crudcy" target="_blank" rel="noopener noreferrer" class="project-link">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                                    <polyline points="15 3 21 3 21 9"></polyline>
+                                                    <line x1="10" x2="21" y1="14" y2="3"></line>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                        <p class="project-description">A feature-rich online coding platform supporting multiple languages with optimized Docker containerization.</p>
+                                        <div class="project-tags">
+                                            <span class="badge project-tag">NodeJS</span>
+                                            <span class="badge project-tag">Express</span>
+                                            <span class="badge project-tag">Docker</span>
+                                            <span class="badge project-tag">NextJS</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Project 2 -->
+                            <div class="project-card">
+                                <div class="project-content">
+                                    <div class="project-image-container">
+                                        <img src="/placeholder.webp?height=200&width=200" alt="Ai-Kart" class="project-image">
+                                    </div>
+                                    <div class="project-details">
+                                        <div class="project-title-container">
+                                            <span class="project-title">Ai-Kart</span>
+                                            <a href="https://github.com/chaman56/AI-Kart" target="_blank" rel="noopener noreferrer" class="project-link">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                                    <polyline points="15 3 21 3 21 9"></polyline>
+                                                    <line x1="10" x2="21" y1="14" y2="3"></line>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                        <p class="project-description">Marketplace for AI apps that empowers users to create and monetize custom AI applications using Google's Gemini.</p>
+                                        <div class="project-tags">
+                                            <span class="badge project-tag">Gemini</span>
+                                            <span class="badge project-tag">LLM</span>
+                                            <span class="badge project-tag">NodeJS</span>
+                                            <span class="badge project-tag">ReactJS</span>
+                                            <span class="badge project-tag">Firebase</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Project 3 -->
+                            <div class="project-card">
+                                <div class="project-content">
+                                    <div class="project-image-container">
+                                        <img src="/placeholder.webp?height=200&width=200" alt="Movie Recommender" class="project-image">
+                                    </div>
+                                    <div class="project-details">
+                                        <div class="project-title-container">
+                                            <span class="project-title">Movie Recommender</span>
+                                            <a href="https://github.com/chaman56/Movie_Recommender" target="_blank" rel="noopener noreferrer" class="project-link">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                                    <polyline points="15 3 21 3 21 9"></polyline>
+                                                    <line x1="10" x2="21" y1="14" y2="3"></line>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                        <p class="project-description">NLP-based movie recommendation system using vectorization techniques for accurate predictions.</p>
+                                        <div class="project-tags">
+                                            <span class="badge project-tag">Python</span>
+                                            <span class="badge project-tag">NLP</span>
+                                            <span class="badge project-tag">Sklearn</span>
+                                            <span class="badge project-tag">Pandas</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Project 4 -->
+                            <div class="project-card">
+                                <div class="project-content">
+                                    <div class="project-image-container">
+                                        <img src="/placeholder.webp?height=200&width=200" alt="Stbay" class="project-image">
+                                    </div>
+                                    <div class="project-details">
+                                        <div class="project-title-container">
+                                            <span class="project-title">Stbay</span>
+                                            <a href="https://github.com/chaman56/Stbay" target="_blank" rel="noopener noreferrer" class="project-link">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                                    <polyline points="15 3 21 3 21 9"></polyline>
+                                                    <line x1="10" x2="21" y1="14" y2="3"></line>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                        <p class="project-description">Campus ecommerce platform for students to buy, sell, and rent goods and services.</p>
+                                        <div class="project-tags">
+                                            <span class="badge project-tag">NodeJS</span>
+                                            <span class="badge project-tag">Express</span>
+                                            <span class="badge project-tag">MongoDB</span>
+                                            <span class="badge project-tag">EJS</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Achievements Section -->
+                    <section class="section">
+                        <div class="section-header">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                                <path d="M8 21v-4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v4"></path>
+                                <path d="M12 7V3l-3 3 3 3"></path>
+                                <path d="M8 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-8"></path>
+                            </svg>
+                            <h2 class="section-title">Achievements</h2>
+                        </div>
+                        <div class="achievements-grid">
+                            <div class="achievement-item">
+                                <p class="achievement-text">🥇 1st place in our batch (2nd year) IIIT Pune's Internal Hackathon ( Overall 4th place )</p>
+                            </div>
+                            <div class="achievement-item">
+                                <p class="achievement-text">🏆 JamShack Hackathon Winner (NIT Agartala) - Top team among 300+ participants</p>
+                            </div>
+                            <div class="achievement-item">
+                                <p class="achievement-text">📈 97.5 percentile in JEE Mains (top 2.5% among 10L+ students)</p>
+                            </div>
+                            <div class="achievement-item">
+                                <p class="achievement-text">👨‍💻 Pupil at Codeforces ( max rating : 1316 ) and 3⭐ at Codechef  (rating : 1656)</p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Setup the blur effect that follows the mouse
+        const blurEffect = document.getElementById('blur-effect');
+        document.addEventListener('mousemove', (e) => {
+            blurEffect.style.background = `radial-gradient(600px at ${e.clientX}px ${e.clientY}px, rgba(29, 78, 216, 0.15), transparent 80%)`;
+        });
+
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const sidebar = document.querySelector('.sidebar');
+        let isMobileMenuOpen = false;
+
+        mobileMenuToggle.addEventListener('click', () => {
+            isMobileMenuOpen = !isMobileMenuOpen;
+            if (isMobileMenuOpen) {
+                sidebar.style.transform = 'translateX(0)';
+            } else {
+                sidebar.style.transform = 'translateX(-100%)';
+            }
+        });
+
+        // Email copy functionality
+        const copyEmailBtn = document.getElementById('copy-email');
+        const email = 'ychaman56@gmail.com';
+
+        copyEmailBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(email)
+                .then(() => {
+                    alert(`Email (${email}) copied to clipboard!`);
+                })
+                .catch(err => {
+                    console.error('Failed to copy email: ', err);
+                });
+        });
+
+        // Add animation classes for initial load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Animate projects
+            const projectCards = document.querySelectorAll('.project-card');
+            projectCards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.transform = 'translateY(0)';
+                    card.style.opacity = '1';
+                }, index * 50);
+            });
+
+            // Animate achievements
+            const achievementItems = document.querySelectorAll('.achievement-item');
+            achievementItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.style.transform = 'translateX(0)';
+                    item.style.opacity = '1';
+                }, index * 100);
+            });
+        });
+
+        // Add initial transform/opacity for animation
+        const projectCards = document.querySelectorAll('.project-card');
+        projectCards.forEach(card => {
+            card.style.transform = 'translateY(50px)';
+            card.style.opacity = '0';
+            card.style.transition = 'transform 0.3s, opacity 0.3s';
+        });
+
+        const achievementItems = document.querySelectorAll('.achievement-item');
+        achievementItems.forEach(item => {
+            item.style.transform = 'translateX(-50px)';
+            item.style.opacity = '0';
+            item.style.transition = 'transform 0.3s, opacity 0.3s';
+        });
+    </script>
+</body>
+</html>

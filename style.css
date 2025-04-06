@@ -99,6 +99,9 @@
     transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.content-section {
+    width: 100%;
+}
 .content-section.hidden { display: none; }
 
 /* Active thumbnail style */

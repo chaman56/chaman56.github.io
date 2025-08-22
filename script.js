@@ -309,6 +309,7 @@ document.addEventListener('DOMContentLoaded', () => {
                  </div>
              `;
             card.addEventListener('click', () => openDetailModal(card.dataset.itemId, card.dataset.itemType));
+            openDetailModal(card.dataset.itemId, card.dataset.itemType);
             experienceList.appendChild(card);
         });
         experiencesLoaded = true;

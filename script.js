@@ -114,6 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
             shortDescription: 'Backend development for an NGO proposal creation platform.',
             technologies: ['FastAPI', 'Stripe', 'Prisma', 'Supabase', 'Docker', 'OpenAI', 'NextJS'],
             galleryImages: [
+                "https://lh3.googleusercontent.com/d/1sv1UvfwgBnHP1YzeAF9V4jme1fQOFIpA",
                 "https://lh3.googleusercontent.com/d/1or9FOeOdmuJRy-XIpivD3F8BXMDdk2d-",
                 "https://lh3.googleusercontent.com/d/1_ybekUuvBwpEnSW2mTORdpC1n_ZgeJKS", 
                 "https://lh3.googleusercontent.com/d/1YLUbfGfSl91CgB0y_oGd_pSPLuza6aLQ", 
@@ -134,7 +135,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 </ul>
             `,
             githubLink: null,
-            liveLink: 'https://app.createyourproposal.com/'
+            certificate: 'https://internshala.com/student/certificate/215297458/b2nn1xee313',
+            liveLink: null, //'https://app.createyourproposal.com/',
         },
         // Add other experiences here following the same structure
     ];
@@ -492,17 +494,20 @@ document.addEventListener('DOMContentLoaded', () => {
             modalLinks.innerHTML = ''; // Clear previous links
             const hasGithubLink = !!data.githubLink;
             const hasLiveLink = !!data.liveLink;
+            const hascertificate = !!data.certificate;
 
+            if (hascertificate) {
+                modalLinks.innerHTML += `<a href="${data.certificate}" target="_blank" rel="noopener noreferrer" class="text-green-400 hover:text-green-300 hover:underline"><i class="fas fa-external-link-alt mr-1"></i> Certificate</a>`;
+            }
             if (hasGithubLink) {
-                modalLinks.innerHTML += `<a href="${data.githubLink}" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 hover:underline"><i class="fab fa-github mr-1"></i> GitHub</a>`;
+                modalLinks.innerHTML += `<a href="${data.githubLink}" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 hover:underline ${hascertificate ? 'ml-4' : ''}"><i class="fab fa-github mr-1"></i> GitHub</a>`;
             }
             if (hasLiveLink) {
-                // Add margin-left only if GitHub link is also present
                 modalLinks.innerHTML += `<a href="${data.liveLink}" target="_blank" rel="noopener noreferrer" class="text-green-400 hover:text-green-300 hover:underline ${hasGithubLink ? 'ml-4' : ''}"><i class="fas fa-external-link-alt mr-1"></i> Live Website</a>`;
             }
 
             // Show/Hide Links section
-            if (hasGithubLink || hasLiveLink) {
+            if (hasGithubLink || hasLiveLink || hascertificate) {
                 modalLinks.classList.remove('hidden');
                 // modalLinksHeading.classList.remove('hidden');
             } else {
